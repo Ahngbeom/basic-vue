@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<label>Freeze obj: </label>
+		<input type="text" v-model="obj.foo" />
+		<button v-on:click="obj.foo = obj.foo.split('').reverse().join('')">Change it</button>
+		<p>{{ obj.foo }}</p>
+
+		<label>Not Freeze obj2: </label>
+		<input type="text" v-model="obj2.foo" />
+		<button v-on:click="obj2.foo = obj2.foo.split('').reverse().join('')">Change it</button>
+		<p>{{ obj2.foo }}</p>
+
+		<a :href="vue2guideLink">Vue.js v2 Guide</a>
+
+	</div>
+	<script>
+		let obj = {
+			foo: 'bar'
+		}
+
+		let obj2 = {
+			foo: 'bar'
+		}
+
+		Object.freeze(obj);
+
+		let vm = new Vue({
+			el: '#app',
+			data: {
+				obj: obj,
+				obj2: obj2,
+				vue2guideLink: 'https://v2.vuejs.org/v2/guide/'
+			}
+		})
+	</script>
+</body>
+
+</html>
