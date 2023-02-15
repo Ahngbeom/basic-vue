@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h3>{{ year }}</h3>
+		<button v-on:click="plusYear">+</button>
+		<button v-on:click="minusYear">-</button>
+
+		<form v-on:submit="submitWithReload">
+			<input type="text"/>
+			<button type="submit">Submit</button>
+		</form>
+
+		<form v-on:submit.prevent="submitWithNotReload">
+			<input type="text"/>
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+	<script>
+		let vm = new Vue({
+			el: '#app',
+			data: {
+				year: 2023
+			},
+			methods: {
+				plusYear() {
+					this.year++;
+				},
+				minusYear() {
+					this.year--;
+				},
+				submitWithReload() {
+					alert("submitted");
+					console.log('hello');
+				},
+				submitWithNotReload() {
+					alert("submitted");
+					console.log('hello');
+				}
+			}
+		})
+	</script>
+</body>
+</html>

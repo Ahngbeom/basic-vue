@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<style>
+		div {
+			border: solid;
+			padding: 1em;
+			margin: 1em;
+		}
+
+		.active {
+			color: forestgreen;
+		}
+
+		.font-bold {
+			font-weight: bold;
+		}
+
+		.font-size {
+			font-size: 20px;
+
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<div v-if="show">
+			<span>{{ message }}</span>
+			<span v-if="keyword === ''">
+			</span>
+			<span v-else-if="message.includes(keyword)">
+				contains {{ keyword }}
+			</span>
+			<span v-else>
+				not contains {{ keyword }}
+			</span>
+		</div>
+		<p v-else>
+			Not Found.
+		</p>
+		<button @click="toggleVisually">{{ buttonNameByVisuallyState }}</button>
+		<label>Search: </label>
+		<input type="search" v-model="keyword" />
+
+		<div v-if="isIncluded369()">
+			<span v-for="c in count">
+				👏
+			</span>
+		</div>
+		<div v-else>
+			{{ num }}
+		</div>
+		<button @click="increase">+</button>
+		<button @click="num = 1">Reset</button>
+
+		<div>
+			<div v-show="show2">
+				Pickaboo
+			</div>
+			<button @click="toggleVisually2">Hey</button>
+		</div>
+	</div>
+	<script>
+		let app = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hello world',
+				keyword: '',
+				show: true,
+				num: 1,
+				count: 0,
+				show2: true,
+			},
+			methods: {
+				toggleVisually() {
+					this.show = !this.show
+				},
+				increase() {
+					this.num++;
+				},
+				isIncluded369() {
+					let included = this.num.toString().match(/[3, 6, 9]/g);
+					if (included != null) {
+						this.count = included.length
+						return included.length
+					} else {
+						this.count = 0
+						return false
+					}
+				},
+				toggleVisually2() {
+					this.show2 = !this.show2
+				}
+			},
+			computed: {
+				buttonNameByVisuallyState() {
+					return this.show ? 'Hide' : 'Show'
+				}
+			}
+		})
+
+	</script>
+</body>
+
+</html>

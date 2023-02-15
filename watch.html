@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<h3>{{ reverseMessageOnMethods() }}</h3>
+		<h3>{{ reverseMessageOnComputed }}</h3>
+		<h3>{{ '\'' + prevMessage + '\'에서 \'' + message + '\'으로 변경됨' }}</h3>
+
+		<input type="text" v-model="message"/>
+	</div>
+	<script>
+		let vm = new Vue({
+			el: '#app',
+			data: {
+				message: '',
+				prevMessage: ''
+			},
+			methods: {
+				reverseMessageOnMethods() {
+					return this.message.split('').reverse().join('');
+				}
+			},
+			computed: {
+				reverseMessageOnComputed() {
+					return this.message.split('').reverse().join('');
+				}
+			},
+			watch: {
+				message(newVal, oldVal) {
+					this.prevMessage = oldVal;
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

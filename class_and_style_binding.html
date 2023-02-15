@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<style>
+		div {
+			border: solid;
+			padding: 1em;
+			margin: 1em;
+		}
+
+		.active {
+			color: forestgreen;
+		}
+
+		.font-bold {
+			font-weight: bold;
+		}
+
+		.font-size {
+			font-size: 20px;
+			
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<h3>Inline Syntax</h3>
+		<span class="static" v-bind:class="{ active: isActive, 'font-bold': bold}"
+			v-bind:style="{'font-size': fontSize + 'px' }">
+			{{ isActive }}
+		</span>
+		<button @click="toggleActive">Toggle Active</button>
+		<button @click="toggleBold">Toggle Bold</button>
+		<button @click="increaseFontSize">Font size +</button>
+		<button @click="decreaseFontSize">Font size -</button>
+	</div>
+	<div id="app-2">
+		<h3>Object Syntax</h3>
+		<span class="static" v-bind:style="styleObject">
+			Hello world
+		</span>
+		<button @click="toggleColor">Toggle Color</button>
+		<button @click="toggleBold">Toggle Bold</button>
+		<button @click="increaseFontSize">Font size +</button>
+		<button @click="decreaseFontSize">Font size -</button>
+	</div>
+	<script>
+		let app = new Vue({
+			el: '#app',
+			data: {
+				isActive: true,
+				bold: false,
+				fontSize: 20
+			},
+			methods: {
+				toggleActive() {
+					this.isActive = !this.isActive;
+				},
+				toggleBold() {
+					this.bold = !this.bold;
+				},
+				increaseFontSize() {
+					this.fontSize += 5;
+				},
+				decreaseFontSize() {
+					this.fontSize -= 5;
+				}
+			},
+			computed: {
+
+			}
+		})
+
+		let app2 = new Vue({
+			el: '#app-2',
+			data: {
+				styleObject: {
+					color: 'black',
+					fontWeight: 'normal',
+					fontSize: '13px'
+				}
+			},
+			methods: {
+				toggleColor() {
+					this.styleObject.color = this.styleObject.color === 'red' ? 'black' : 'red';
+				},
+				toggleBold() {
+					this.styleObject.fontWeight = this.styleObject.fontWeight === 'normal' ? 'bold' : 'normal';
+				},
+				increaseFontSize() {
+					this.styleObject.fontSize = (Number(this.styleObject.fontSize.slice(0, this.styleObject.fontSize.length - 2)) + 5) + 'px';
+				},
+				decreaseFontSize() {
+					this.styleObject.fontSize = (Number(this.styleObject.fontSize.slice(0, this.styleObject.fontSize.length - 2)) - 5) + 'px';
+				}
+			},
+			computed: {
+
+			}
+		})
+	</script>
+</body>
+
+</html>
