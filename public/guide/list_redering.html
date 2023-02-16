@@ -23,13 +23,13 @@
 			</li>
 		</ul>
 		<div v-for="(value, name) in listInputData" v-bind:key="name">
-			<input type="text" v-bind:placeholder="name" v-model="listInputData[name]"/>
+			<input type="text" v-bind:placeholder="name" v-model="listInputData[name]" />
 		</div>
-		<button v-on:click="pushToList">PUSH</button>
+		<button v-on:click="pushList">PUSH</button>
 
 		<h4>Object</h4>
 		<ul>
-			<li v-for="value in obj" :key="value">
+			<li v-for="value in obj">
 				{{ value }}
 			</li>
 
@@ -45,6 +45,9 @@
 				{{ index }} { {{ name }} : {{ value }} }
 			</li>
 		</ul>
+		<input type="text" placeholder="title" v-model="objInputData.title" />
+		<input type="text" placeholder="author" v-model="objInputData.author" />
+		<button v-on:click="updateObj">UPDATE</button>
 	</div>
 	<script>
 		let app = new Vue({
@@ -60,15 +63,33 @@
 					{ name: 'c', age: 28 },
 					{ name: 'd', age: 35 },
 				],
+				objInputData: {
+					title: null,
+					author: null,
+				},
 				obj: {
 					title: 'How to do lists in Vue',
 					author: 'Jane Doe',
-					publishedAt: '2016-04-10'
+					publishedAt: '2016-04-10',
+					updatedAt: '2016-04-10'
 				}
 			},
 			methods: {
-				pushToList() {
+				pushList() {
 					this.list.push({ name: this.listInputData.name, age: this.listInputData.age })
+				},
+				updateObj() {
+					this.obj.title = this.objInputData.title
+					this.obj.author = this.objInputData.author
+					const now = new Date()
+					const year = now.getFullYear()
+					const month = now.getMonth() + 1
+					const date = now.getDate()
+					console.log(now.toLocaleTimeString());
+					this.obj.updatedAt = now.getFullYear() + '-'
+						+ (month < 10 ? '0' + month : month) + '-'
+						+ (date < 10 ? '0' + date : date) + ' '
+						+ now.toLocaleTimeString()
 				}
 			},
 			computed: {
