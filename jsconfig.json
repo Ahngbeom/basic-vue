@@ -6,7 +6,8 @@
     "moduleResolution": "node",
     "paths": {
       "@/*": [
-        "src/*"
+        "src/*",
+		"components/*"
       ]
     },
     "lib": [
@@ -14,6 +15,7 @@
       "dom",
       "dom.iterable",
       "scripthost"
-    ]
+    ],
+	"allowJs": true
   }
 }
