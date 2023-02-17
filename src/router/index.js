@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import MyPageView from '../views/MyPageView.vue'
 import UserView from '../views/UserView.vue'
+import FormInputView from '../views/FormInputView.vue'
+import TodoView from '../views/TodoView.vue'
 
 Vue.use(VueRouter)
 
@@ -38,6 +40,14 @@ const routes = [
 	{
 		path: '/user/:id',
 		component: UserView
+	},
+	{
+		path: '/sign-up',
+		component: FormInputView
+	},
+	{
+		path: '/to-do',
+		component: TodoView
 	}
 ]
 

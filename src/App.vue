@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-	<button v-on:click="goBack">뒤로가기</button>
+    <button v-on:click="goBack">뒤로가기</button>
+    <nav>
+      <router-link to="/sign-up">Sign-Up</router-link>
+    </nav>
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
@@ -8,6 +11,9 @@
       <router-link to="/user/bahn">User</router-link> |
       <router-link to="/foo">Foo</router-link> |
       <router-link to="/bar">Bar</router-link>
+      <div style="margin: 1em; font-size: x-large;">
+        <router-link to="/to-do">To-do</router-link>
+      </div>
     </nav>
     <router-view />
   </div>
@@ -16,16 +22,16 @@
 <script>
 export default {
   computed: {
-	username() {
-		return this.$route.params.username
-	}
+    username() {
+      return this.$route.params.username;
+    },
   },
   methods: {
-	goBack() {
-		window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
-	}
-  }
-}
+    goBack() {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
+    },
+  },
+};
 </script>
 
 <style>

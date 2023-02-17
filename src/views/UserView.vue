@@ -1,6 +1,5 @@
 <template>
   <div>
-    User {{ $route.params.id }}
     <MyPage title="User" :name="name" />
   </div>
 </template>
@@ -13,6 +12,7 @@ export default {
     MyPage,
   },
   data() {
+
 	return {
 		name: this.$route.params.id
 	}
