@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <button v-on:click="goBack">뒤로가기</button>
+  <div id="app" class="container">
+    <button v-on:click="goBack" class="btn btn-outline-dark">뒤로가기</button>
     <nav>
       <router-link to="/sign-up">Sign-Up</router-link>
     </nav>

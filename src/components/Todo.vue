@@ -1,30 +1,43 @@
 <template>
-  <div class="d-flex flex-column">
-    <div v-for="item in todo" v-bind:key="item.id">
-      <input type="checkbox" class="form-check-input" :id="item.id" />
-      <label class="form-check-label" :for="item.id">
-        {{ item.title }}
-      </label>
-      <span> </span>
-    </div>
+  <div class="form-group form-check">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      :id="todo.id"
+      :checked="todo.checked"
+      v-on:change="checkTodo"
+    />
+    <label
+      class="form-check-label"
+      :for="todo.id"
+      :class="todo.checked ? 'text-muted' : ''"
+      :style="todo.checked ? 'text-decoration: line-through' : ''"
+    >
+      {{ todo.title }}
+    </label>
+    <button class="btn btn-sm btn-danger mx-2" v-on:click="removeTodo">
+      Remove
+    </button>
   </div>
 </template>
 
 <script>
 export default {
   name: "MyTodo",
-  data() {
-    return {
-      todo: [
-        { id: 0, title: "buy a car" },
-        { id: 1, title: "play a game" },
-      ],
-    };
+  props: {
+    todo: {
+      type: Object,
+    },
   },
-  computed: {
-    getTodoList() {
-      console.log(this.todo);
-      return this.todo;
+  methods: {
+    checkTodo(e) {
+      this.$emit("toggle-checkbox", {
+        id: this.todo.id,
+        checked: e.target.checked,
+      });
+    },
+    removeTodo() {
+      this.$emit("remove-todo", this.todo.id);
     },
   },
 };
