@@ -11,8 +11,30 @@ export default new Vuex.Store({
 		],
 	},
 	getters: {
+		getTodoList: state => {
+			return state.todoList;
+		},
+		completedTodoCount: state => {
+			return state.todoList.filter((item) => item.checked === true).length;
+		},
 	},
 	mutations: {
+		registration(state, title) {
+			state.todoList.push({
+				id: state.todoList.length,
+				title: title,
+				checked: false
+			});
+		},
+		toggleCheckTodo(state, payload) {
+			state.todoList.find((item) => item.id === payload.id).checked = payload.checked;
+		},
+		removeTodo(state, id) {
+			state.todoList.splice(
+				state.todoList.findIndex((item) => item.id === id),
+				1
+			);
+		},
 	},
 	actions: {
 	},

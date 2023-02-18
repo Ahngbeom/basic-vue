@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex justify-content-center">
     <input
-      v-model="inputText"
+      v-model="inputTodoTitle"
       v-on:keyup.enter="registrationTodo"
       type="text"
       class="form-control col-4"
@@ -16,12 +16,12 @@
 export default {
   data() {
     return {
-      inputText: "",
+      inputTodoTitle: "",
     };
   },
   methods: {
     registrationTodo() {
-      this.$emit("registration-todo", this.inputText);
+      this.$store.commit("registration", this.inputTodoTitle);
     },
   },
 };
