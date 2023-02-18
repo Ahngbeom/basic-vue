@@ -1,70 +1,54 @@
 <template>
   <div class="container">
-    <div class="d-flex justify-content-center">
-      <input
-        v-model="inputText"
-        v-on:keyup.enter="registration"
-        type="text"
-        class="form-control col-4"
-      />
-      <button v-on:click="registration" class="btn btn-secondary">
-        Submit
-      </button>
-    </div>
-    <div class="d-flex flex-column justify-content-center">
-      <Todo
-        v-for="item in todo"
-        v-bind:key="item.id"
-        v-bind:todo="item"
-        v-on:toggle-checkbox="toggleCheckbox"
-        v-on:remove-todo="removeTodo"
-      />
-    </div>
+    <AddTodo v-on:registration-todo="registration" />
+    <CompleteTodo :completedTodoCount="completedTodoCount()" />
+    <TodoList
+      :todoList="todoList"
+      v-on:toggle-check-todo="toggleCheckTodo"
+      v-on:remove-todo="removeTodo"
+    />
+    {{ todoList }}
   </div>
 </template>
 
 <script>
-import Todo from "@/components/Todo.vue";
+import AddTodo from "@/components/Todo/AddTodo.vue";
+import TodoList from "@/components/Todo/TodoList.vue";
+import CompleteTodo from "@/components/Todo/CompleteTodo.vue";
 
 export default {
   components: {
-    Todo,
+    AddTodo,
+    TodoList,
+    CompleteTodo,
   },
   data() {
     return {
-      inputText: "",
-      todo: [
+      todoList: [
         { id: 0, title: "buy a car", checked: true },
         { id: 1, title: "play a game", checked: false },
       ],
     };
   },
   methods: {
-    registration(e) {
-      switch (e.target.tagName) {
-        case "INPUT": {
-          this.todo.push({
-            id: this.todo.length,
-            title: e.target.value,
-            checked: false,
-          });
-          break;
-        }
-        case "BUTTON": {
-          this.todo.push({
-            id: this.todo.length,
-            title: this.inputText,
-            checked: false,
-          });
-          break;
-        }
-      }
+    registration(title) {
+      this.todoList.push({
+        id: this.todoList.length,
+        title: title,
+        checked: false,
+      });
     },
-    toggleCheckbox({ id, checked }) {
-      this.todo.find((item) => item.id === id).checked = checked;
+    toggleCheckTodo({ id, checked }) {
+      this.todoList.find((item) => item.id === id).checked = checked;
     },
     removeTodo(id) {
-      this.todo.pop({ id: id });
+      this.todoList.splice(
+        this.todoList.findIndex((item) => item.id === id),
+        1
+      );
+    },
+    completedTodoCount() {
+      
     },
   },
 };

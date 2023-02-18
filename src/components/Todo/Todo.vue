@@ -5,7 +5,7 @@
       class="form-check-input"
       :id="todo.id"
       :checked="todo.checked"
-      v-on:change="checkTodo"
+      v-on:change="toggleCheckTodo"
     />
     <label
       class="form-check-label"
@@ -30,8 +30,8 @@ export default {
     },
   },
   methods: {
-    checkTodo(e) {
-      this.$emit("toggle-checkbox", {
+    toggleCheckTodo(e) {
+      this.$emit("toggle-check-todo", {
         id: this.todo.id,
         checked: e.target.checked,
       });
