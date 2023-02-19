@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <div>
-      <input type="text" v-model="message" />
+    <div class="d-flex justify-content-center">
+      <input type="text" v-model="message" class="form-control col-8 text-center" />
     </div>
     <HelloWorld :msg="message" />
   </div>
@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      message: "Welcome to Your Vue.js App ㅋ",
+      message: "Welcome to Your Vue.js App",
     };
   },
   beforeCreate() {
