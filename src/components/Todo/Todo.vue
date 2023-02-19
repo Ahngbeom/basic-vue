@@ -13,7 +13,7 @@
       :class="todo.completed ? 'text-muted' : ''"
       :style="todo.completed ? 'text-decoration: line-through' : ''"
     >
-      {{ todo.title }}
+      {{ todo }}
     </label>
     <button class="btn btn-sm btn-danger mx-2" v-on:click="removeTodo">
       Remove
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+// import { mapActions } from "vuex";
 export default {
   name: "MyTodo",
   props: {
@@ -42,10 +43,15 @@ export default {
         completed: e.target.checked,
       });
     },
+    // ...mapActions("toggleCheckTodo", {
+    //   id: this.todo.id,
+    //   completed: e.target.checked,
+    // }),
     removeTodo() {
       //   this.$store.commit("REMOVE_TODO", this.todo.id);
       this.$store.dispatch("removeTodo", this.todo.id);
     },
+    // ...mapActions("removeTodo", { id: this.todo.id }),
   },
 };
 </script>

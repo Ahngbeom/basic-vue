@@ -8,7 +8,7 @@
         <span class="sr-only">Loading...</span>
       </div>
     </div> -->
-    {{ getTodoList }}
+    <!-- {{ getTodoList }} -->
   </div>
 </template>
 
@@ -16,6 +16,7 @@
 import AddTodo from "@/components/Todo/AddTodo.vue";
 import TodoList from "@/components/Todo/TodoList.vue";
 import CompleteTodo from "@/components/Todo/CompleteTodo.vue";
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -23,11 +24,11 @@ export default {
     TodoList,
     CompleteTodo,
   },
-  methods: {},
   computed: {
-    getTodoList() {
-      return this.$store.getters.getTodoList;
-    },
+    // getTodoList() {
+    //   return this.$store.getters.getTodoList;
+    // },
+    ...mapGetters(["getTodoList"]),
   },
   created() {
     this.$store.dispatch("getTodos");

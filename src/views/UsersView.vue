@@ -9,14 +9,16 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   created() {
     this.getUsers();
   },
   computed: {
-    users() {
-      return this.$store.state.users;
-    },
+    ...mapState(["users"]),
+    // users() {
+    //   return this.$store.state.users;
+    // },
   },
   methods: {
     getUsers() {
