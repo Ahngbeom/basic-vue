@@ -7,12 +7,13 @@
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/my-page">My Page</router-link> |
-      <router-link to="/user/bahn">User</router-link> |
+      <router-link to="/my-page/ahngbeom">My Page</router-link> |
+      <!-- <router-link to="/user/bahn">User</router-link> | -->
       <router-link to="/foo">Foo</router-link> |
       <router-link to="/bar">Bar</router-link>
       <div style="margin: 1em; font-size: x-large;">
-        <router-link to="/to-do">To-do</router-link>
+        <router-link to="/to-do">To-do</router-link> | 
+        <router-link to="/users">Users</router-link>
       </div>
     </nav>
     <router-view />

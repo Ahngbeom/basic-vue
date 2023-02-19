@@ -10,7 +10,8 @@ export default new Vuex.Store({
 		// 	{ id: 0, title: "buy a car", checked: true },
 		// 	{ id: 1, title: "play a game", checked: false },
 		// ],
-		todos: []
+		todos: [],
+		users: []
 	},
 	getters: {
 		getTodoList: state => {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
 	mutations: {
 		SET_TODOS(state, todos) {
 			state.todos = todos.reverse();
+		},
+		SET_USERS(state, users) {
+			state.users = users;
 		},
 		ADD_TODO(state, title) {
 			// state.todoList.push({
@@ -69,6 +73,12 @@ export default new Vuex.Store({
 			axios.get('https://jsonplaceholder.typicode.com/todos')
 				.then((response) => {
 					commit('SET_TODOS', response.data)
+				});
+		},
+		getUsers({ commit }) {
+			axios.get('https://jsonplaceholder.typicode.com/users')
+				.then((response) => {
+					commit('SET_USERS', response.data)
 				});
 		}
 	},

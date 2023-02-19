@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import MyPageView from '../views/MyPageView.vue'
-import UserView from '../views/UserView.vue'
+import UsersView from '../views/UsersView.vue'
 import FormInputView from '../views/FormInputView.vue'
 import TodoView from '../views/TodoView.vue'
 
@@ -26,7 +26,7 @@ const routes = [
 		component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
 	},
 	{
-		path: '/my-page',
+		path: '/my-page/:id',
 		component: MyPageView
 	},
 	{
@@ -38,16 +38,16 @@ const routes = [
 		component: Bar
 	},
 	{
-		path: '/user/:id',
-		component: UserView
-	},
-	{
 		path: '/sign-up',
 		component: FormInputView
 	},
 	{
 		path: '/to-do',
 		component: TodoView
+	},
+	{
+		path: '/users',
+		component: UsersView
 	}
 ]
 
