@@ -2,11 +2,11 @@
   <div class="d-flex justify-content-center">
     <input
       v-model="inputTodoTitle"
-      v-on:keyup.enter="registrationTodo"
+      v-on:keyup.enter="addTodo"
       type="text"
       class="form-control col-4"
     />
-    <button v-on:click="registrationTodo" class="btn btn-secondary">
+    <button v-on:click="addTodo" class="btn btn-secondary">
       Submit
     </button>
   </div>
@@ -20,8 +20,9 @@ export default {
     };
   },
   methods: {
-    registrationTodo() {
-      this.$store.commit("registration", this.inputTodoTitle);
+    addTodo() {
+    //   this.$store.commit("ADD_TODO", this.inputTodoTitle);
+      this.$store.dispatch("addTodo", this.inputTodoTitle);
     },
   },
 };

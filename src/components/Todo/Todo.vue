@@ -4,14 +4,14 @@
       type="checkbox"
       class="form-check-input"
       :id="todo.id"
-      :checked="todo.checked"
+      :checked="todo.completed"
       v-on:change="toggleCheckTodo"
     />
     <label
       class="form-check-label"
       :for="todo.id"
-      :class="todo.checked ? 'text-muted' : ''"
-      :style="todo.checked ? 'text-decoration: line-through' : ''"
+      :class="todo.completed ? 'text-muted' : ''"
+      :style="todo.completed ? 'text-decoration: line-through' : ''"
     >
       {{ todo.title }}
     </label>
@@ -31,13 +31,20 @@ export default {
   },
   methods: {
     toggleCheckTodo(e) {
-      this.$emit("toggle-check-todo", {
+      //   this.$store.commit({
+      //     type: "TOGGLE_CHECK_TODO",
+      //     id: this.todo.id,
+      //     checked: e.target.checked,
+      //   });
+      this.$store.dispatch({
+        type: "toggleCheckTodo",
         id: this.todo.id,
-        checked: e.target.checked,
+        completed: e.target.checked,
       });
     },
     removeTodo() {
-      this.$emit("remove-todo", this.todo.id);
+      //   this.$store.commit("REMOVE_TODO", this.todo.id);
+      this.$store.dispatch("removeTodo", this.todo.id);
     },
   },
 };
